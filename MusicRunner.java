@@ -2,8 +2,14 @@ import java.util.Arrays;
 
 public class MusicRunner
 {
-  public static void main (String[] args)
+  public static String clean (String input)
   {
+    return input.substring(1,input.length()-1).trim();
+  
+  }
+
+   public static void main (String[] args)
+   {
     int count = 0;
     MusicReader mr = new MusicReader();
     
@@ -25,8 +31,19 @@ public class MusicRunner
       // You probably will comment this out but for now print out the line so you can see what is there
       System.out.println(Arrays.toString(data));
       
+      int year = Integer.parseInt(clean(data[3]));
+      double score = Double.parseDouble(clean(data[4]));
+      
       // Let's try to create a Song object
-      Song song = new Song(data[0], data[1]);  // data[0] is the artist and data[1] is the name
+      Song song = new Song(clean(data[0]), data[1], year, score, clean(data[16]));  // data[0] is the artist and data[1] is the name
+      
+      String type = clean(data[2]);
+      
+      if (type.equals ("song"))
+      {
+        songs.add(songs);
+        
+      }  
       
       count++;
       
@@ -39,3 +56,5 @@ public class MusicRunner
     mr.close();
   }
 }
+
+
